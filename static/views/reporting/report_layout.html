@@ -127,14 +127,14 @@
             </div>
         </div>
 
-        <div ng-if="main.showReportsCoaching && main.currentUser.isManager()" ng-include="'/static/views/reporting/coaching.html'">
+        <div ng-if="main.showReportsCoaching && main.currentUser.isManager()" ng-include="'static/views/reporting/coaching.html'">
         </div>
         <div ng-if="!main.showReportsCoaching || !main.currentUser.isManager()">
-            <div ng-if="!main.showRewards && main.showReports" ng-include="'/static/views/reporting/reports_tables.html'"></div>
+            <div ng-if="!main.showRewards && main.showReports" ng-include="'static/views/reporting/reports_tables.html'"></div>
             <div ng-if="main.showRewards && !reports.showClaimReport && !main.showReports"
-                 ng-include="'/static/views/reporting/reports_rewards.html'"></div>
+                 ng-include="'static/views/reporting/reports_rewards.html'"></div>
             <div ng-if="main.showRewards && reports.showClaimReport && !main.showReports"
-                 ng-include="'/static/views/reporting/reports_reward_claims.html'"></div>
+                 ng-include="'static/views/reporting/reports_reward_claims.html'"></div>
         </div>
     </div>
 </div>

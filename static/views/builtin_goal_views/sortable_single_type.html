@@ -5,7 +5,7 @@
             <div class="visible-md visible-lg col-md-3"
                  ng-class="{'col-lg-2': main.currentView.showTwoPictureColumns}"
                  style="padding-right: 0px;">
-                <div ng-include="'/static/views/builtin_goal_views/images_in_grid/left_first_image_column.html'"></div>
+                <div ng-include="'static/views/builtin_goal_views/images_in_grid/left_first_image_column.html'"></div>
             </div>
             <!-- Currently unused by any views
             <div ng-if="main.currentView.showTwoPictureColumns"
@@ -39,7 +39,7 @@
                              sv-element="{containment:'.multi-sortable'}"
                              ng-repeat="goal in main.currentView.goalArraysByType[goalTypeID] track by goal.id"
                              class="draggable-element">
-                            <div ng-include="'/static/views/builtin_goal_views/single_type_views/incomplete_goal.html'"></div>
+                            <div ng-include="'static/views/builtin_goal_views/single_type_views/incomplete_goal.html'"></div>
                         </div>
                         <!-- This div renders a click to edit UI when drag/drop goals is disabled -->
                         <!-- IMPORTANT! This block was edited to include class draggable-element and sv-element. This was to remove the necessity of checking the "Drag and Drop Goals/Images" checkbox. We can eliminate this in the above html block (and subsequent JS) after testing. -->
@@ -47,7 +47,7 @@
                              ng-repeat="goal in main.currentView.goalArraysByType[goalTypeID] track by goal.id"
                              class="clickable-element"
                              ng-click="main.gridViewClickGoal(goal.id);$event.stopPropagation()">
-                            <div ng-include="'/static/views/builtin_goal_views/single_type_views/incomplete_goal.html'"></div>
+                            <div ng-include="'static/views/builtin_goal_views/single_type_views/incomplete_goal.html'"></div>
                         </div>
                     </div>
                 </div>
@@ -60,14 +60,14 @@
                              sv-element="{containment:'.multi-sortable'}"
                              ng-repeat="goal in main.currentView.goalArraysByType[goalTypeID] track by goal.id"
                              class="draggable-element">
-                            <div ng-include="'/static/views/builtin_goal_views/single_type_views/complete_goal.html'"></div>
+                            <div ng-include="'static/views/builtin_goal_views/single_type_views/complete_goal.html'"></div>
                         </div>
                         <!-- This div renders a click to edit UI when drag/drop goals is disabled -->
                         <div ng-if="!main.gridViewRearrangeGoals"
                              ng-repeat="goal in main.currentView.goalArraysByType[goalTypeID] track by goal.id"
                              class="clickable-element"
                              ng-click="main.gridViewClickGoal(goal.id);$event.stopPropagation()">
-                            <div ng-include="'/static/views/builtin_goal_views/single_type_views/complete_goal.html'"></div>
+                            <div ng-include="'static/views/builtin_goal_views/single_type_views/complete_goal.html'"></div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
             <!--<div class="visible-md visible-lg col-md-3"
                  ng-class="{'col-lg-2': main.currentView.showTwoPictureColumns}"
                  style="padding-left: 0px;">
-                <div ng-include="'/static/views/builtin_goal_views/images_in_grid/right_first_image_column.html'"></div>
+                <div ng-include="'static/views/builtin_goal_views/images_in_grid/right_first_image_column.html'"></div>
             </div>
         </div> -->
     </div>

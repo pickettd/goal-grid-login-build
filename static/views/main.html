@@ -1,8 +1,8 @@
 <link ng-if="main.css" rel="stylesheet" ng-href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/{{ main.css }}/bootstrap.min.css">
 
-<link ng-if="main.css" rel="stylesheet" href="/static/bower_components/bootstrap-additions/dist/bootstrap-additions.min.css">
+<link ng-if="main.css" rel="stylesheet" href="static/bower_components/bootstrap-additions/dist/bootstrap-additions.min.css">
 
-<link ng-if="main.css" rel="stylesheet" href="/static/styles/main.css">
+<link ng-if="main.css" rel="stylesheet" href="static/styles/main.css">
 
 <nav class="navbar navbar-default" role="navigation" style="margin: 0;">
     <div class="container-fluid">
@@ -82,19 +82,19 @@
     </div>
     <div ng-if="!main.currentUser.isAdmin() && main.isInitialLoadDone">
         <div ng-if="main.currentView && !main.showReports && !main.showRewards"
-             ng-include="'/static/views/builtin_goal_views/goal_layout_generic.html'"></div>
+             ng-include="'static/views/builtin_goal_views/goal_layout_generic.html'"></div>
 
         <div ng-if="main.showReports || main.showRewards"
-             ng-include="'/static/views/reporting/report_layout.html'"></div>
+             ng-include="'static/views/reporting/report_layout.html'"></div>
     </div>
     <div ng-if="!main.isInitialLoadDone"
          style="padding-top: 17px;">
-        <div ng-include="'/static/views/loading.html'"></div>
+        <div ng-include="'static/views/loading.html'"></div>
     </div>
 </div>
 
 <!-- Manage Accounts Modal -->
-<div ng-include="'/static/views/modals/accounts_groups/accounts.html'"></div>
+<div ng-include="'static/views/modals/accounts_groups/accounts.html'"></div>
 
 <!-- Manage User Settings Modal -->
-<div ng-include="'/static/views/modals/user_settings.html'"></div>
+<div ng-include="'static/views/modals/user_settings.html'"></div>
