@@ -5,7 +5,7 @@
             <form name="accountForm" class="form" role="form" novalidate ng-submit="accountForm.$valid && addAccount()">
                 <div class="form-inline">
                     <div class="form-group" ng-class="{'has-error': accountForm.name.$invalid}">
-                        <label for="name" class="control-label">Username</label>
+                        <label for="name" class="control-label">Name</label>
                         <input type="text" class="form-control" size="20" ng-model="newAccount.username" name="name" placeholder="Required" required>
                     </div>
                     <div class="form-group" ng-class="{'has-error': accountForm.password.$invalid}">
@@ -109,7 +109,7 @@
                 <form name="accountEditForm" class="form-inline" role="form" novalidate ng-submit="accountEditForm.$valid && saveAccount(account)">
                     <fieldset ng-disabled="currentEdit[account.id].deleteMode">
                         <div class="form-group" ng-class="{'has-error': accountEditForm.name.$invalid}">
-                            <label for="name" class="control-label">Username</label>
+                            <label for="name" class="control-label">Name</label>
                             <input type="text" class="form-control" size="20" ng-model="currentEdit[account.id].account.username" name="name" placeholder="Required" required>
                         </div>
                         <div class="form-group" ng-class="{'has-error': accountEditForm.password.$invalid}">
