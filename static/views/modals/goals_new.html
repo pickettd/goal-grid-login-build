@@ -11,17 +11,6 @@
 <div>
     <form name="goalForm" class="form" role="form" novalidate ng-submit="goalForm.$valid && addGoal()">
         <div class="form-inline">
-            <div class="form-group">
-                <input type="color"
-                       spectrum-colorpicker
-                       ng-model="newGoal.customColor"
-                       options="goalModal.colorPaletteOptions" />
-                <input disabled
-                       class="form-control"
-                       type="text"
-                       size="7"
-                       ng-model="newGoal.customColor" />
-            </div>
             <div class="form-group" ng-class="{'has-error': goalForm.goalText.$invalid}">
                 <input type="text"
                        class="form-control"
@@ -30,6 +19,20 @@
                        name="goalText"
                        placeholder="{{goalModal.modalGoalType.name == 'Activities' ? 'Activity' : 'Goal'}} Text"
                        required />
+            </div>
+        </div>
+        <br/>
+        <div class="form-inline">
+            <div class="form-group"
+                ng-class="{'has-error': goalForm.category.$invalid}">
+                <label for="goalCategorySelect"> Goal Category: </label>
+                <select
+                    class="form-control"
+                    ng-model="newGoal.category" 
+                    ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.color"
+                    name="category"
+                    required>
+                </select>
             </div>
         </div>
         <div class="form-group" ng-class="{'has-error': goalForm.private.$invalid}" style="margin-bottom:0;">
@@ -145,12 +148,6 @@
                     </label>
                 </div>
             </div>
-        </div>
-        <div ng-if="goalModal.modalState.allowGoalLinkUI"
-             class="form-group"
-             ng-class="{'has-error': goalForm.linkedGoals.$invalid}"
-             style="margin-bottom:0;">
-            <div ng-include="'static/views/modals/link_color_inner_new.html'"></div>
         </div>
         <div class="form-group" style="min-height:20px;">
             <div class="pull-right">

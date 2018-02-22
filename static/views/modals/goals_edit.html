@@ -6,11 +6,13 @@
     <div ng-hide="currentEdit[goal.id].goal">
         <div>
             <h4>
-                <span class="color-preview" style="background-color:{{goal.customColor}}; border-width: 1px"></span>
+                <span class="color-preview"
+                      style="background-color:{{goalModal.getGoalColor(goal)}};"></span>
                 <span ng-bind="goal.goalText"></span>
             </h4>
             <span ng-if="goal.private">Private (not shared with my manager)</span>
             <span ng-if="!goal.private">{{goalModal.modalGoalType.name == "Activities" ? 'Activity' : 'Goal'}} shared with my manager</span>
+            <!-- No more link groups
             <br ng-if="goalModal.modalState.allowGoalLinkUI">
             <span ng-if="goalModal.modalState.allowGoalLinkUI">
                 <span ng-if="goal.linkColor">
@@ -20,7 +22,7 @@
                     <span><span ng-if="!goal.linkedGoalIds">0</span><span ng-if="goal.linkedGoalIds" ng-bind="goal.linkedGoalIds.length"></span> other grouped goals</span>
                 </span>
                 <span ng-if="!goal.linkColor">No group</span>
-            </span>
+            </span>-->
             <div class="pull-right">
                 <button type="button" class="btn btn-primary" ng-click="editGoal(goal)">Edit</button>
             </div>
@@ -56,17 +58,6 @@
         <form name="goalEditForm" class="form" role="form" novalidate ng-submit="goalEditForm.$valid && saveGoal(goal)">
             <fieldset ng-disabled="currentEdit[goal.id].deleteMode">
                 <div class="form-inline">
-                    <div class="form-group">
-                        <input type="color"
-                               spectrum-colorpicker
-                               ng-model="currentEdit[goal.id].goal.customColor"
-                               options="goalModal.colorPaletteOptions" />
-                        <input disabled
-                               class="form-control"
-                               type="text"
-                               size="7"
-                               ng-model="currentEdit[goal.id].goal.customColor" />
-                    </div>
                     <div class="form-group" ng-class="{'has-error': goalEditForm.goalText.$invalid}">
                         <input type="text"
                                class="form-control"
@@ -75,6 +66,17 @@
                                name="goalText"
                                placeholder="Goal Text"
                                required />
+                    </div>
+                </div>
+                <br/>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label for="goalCategorieSelect"> Goal Category: </label>
+                        <select 
+                            class="form-control"
+                            ng-model="currentEdit[goal.id].goal.category" 
+                            ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.color">
+                        </select>
                     </div>
                 </div>
                 <div class="form-group" style="margin:0;">
@@ -220,11 +222,6 @@
                             </label>
                         </div>
                     </div>
-                </div>
-                <div ng-if="goalModal.modalState.allowGoalLinkUI"
-                     class="form-group"
-                     ng-class="{'has-error': goalForm.linkedGoals.$invalid}">
-                    <div ng-include="'static/views/modals/link_color_inner_edit.html'"></div>
                 </div>
                 <div class="pull-right">
                     <input type="submit" value="Save" class="btn btn-success" />
