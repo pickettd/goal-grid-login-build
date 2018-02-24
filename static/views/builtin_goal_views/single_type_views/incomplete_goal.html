@@ -23,7 +23,7 @@
                         ng-class="{active: (main.getCurrentCompletionPercentageForGoal(goal) === percentage)}"
                         type="button"
                         ng-click="main.markGoalProgress(goal, percentage, $event);$event.stopPropagation()"
-                        ng-style="main.colorPercentageSquare($index, goal, 0)">
+                        ng-attr-style="{{main.colorPercentageSquare($index, goal, 0)}}">
                     <span><span ng-bind="percentage"></span>%</span>
                 </button>
                 <!-- Adam wanted to try the idea of a slider
