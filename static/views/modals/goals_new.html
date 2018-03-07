@@ -28,8 +28,8 @@
                 <label for="goalCategorySelect"> Goal Category: </label>
                 <select
                     class="form-control"
-                    ng-model="newGoal.category" 
-                    ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.id"
+                    ng-model="newGoal.category"
+                    ng-options="goalCategory as (goalCategory.category) for (id,goalCategory) in goalModal.categoryColors"
                     name="category"
                     required>
                 </select>
