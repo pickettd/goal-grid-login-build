@@ -29,7 +29,7 @@
                 <select
                     class="form-control"
                     ng-model="newGoal.category" 
-                    ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.color"
+                    ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.id"
                     name="category"
                     required>
                 </select>

@@ -75,7 +75,7 @@
                         <select 
                             class="form-control"
                             ng-model="currentEdit[goal.id].goal.category" 
-                            ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.color">
+                            ng-options="goalCategory as (goalCategory.category) for goalCategory in goalModal.categoryColors track by goalCategory.id">
                         </select>
                     </div>
                 </div>
