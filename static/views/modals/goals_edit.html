@@ -163,32 +163,68 @@
                 <div ng-if="goalModal.modalGoalType.recurranceFormat !== 'none'"
                      class="form-group"
                      style="margin:0;">
-                    <label style="margin-bottom:0;">
-                        Repeat schedule for this {{goalModal.modalGoalType.name == "Activities" ? 'activity' : 'goal'}}:
+                     <label style="margin-bottom:0;">
+                        Does this {{goalModal.modalGoalType.name == "Activities" ? 'activity' : 'goal'}} repeat?
                     </label>
-                    <div ng-if="goalModal.modalGoalType.recurranceFormat !== 'none'"
-                         class="form-inline">
-                        <div class="radio" style="margin:0;">
+                    <div class="form-inline">
+                        <div class="radio" style="margin-top:0;">
                             <label>
-                                <input ng-if="currentEdit[goal.id].goal.singleGoalCompletion"
-                                       type="radio"
-                                       disabled />
-                                <!-- If singleGoalCompletion is false or doesn't exist we
-                                     show a selected radio button for recuring -->
-                                <input ng-if="!currentEdit[goal.id].goal.singleGoalCompletion"
-                                       type="radio"
-                                       checked="checked"
-                                       disabled />
-                                Repeat every {{goalModal.modalGoalType.name == "Activities" ? 'day' : goalModal.modalGoalType.name.replace("ly", "") | lowercase }}
+                                <!-- <input ng-if="currentEdit[goal.id].goal.singleGoalCompletion" type="radio" disabled /> -->
+                                <!-- If singleGoalCompletion is false or doesn't exist we show a selected radio button for recuring -->
+                                
+                                <input type="radio" ng-model="currentEdit[goal.id].goal.singleGoalCompletion" ng-value="false" disabled/> Yes
                             </label>
                         </div>
-                        <div class="radio" style="margin:0;">
+                        <div class="radio">
                             <label>
-                                <input type="radio"
-                                       ng-model="currentEdit[goal.id].goal.singleGoalCompletion"
-                                       ng-value="true"
-                                       disabled />
-                                Does not repeat, this is a one-time {{goalModal.modalGoalType.name == "Activities" ? 'activity' : 'goal'}}
+                                <input type="radio" ng-model="currentEdit[goal.id].goal.singleGoalCompletion" ng-value="true" disabled/> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="goalModal.modalGoalType.recurranceFormat !== 'none' && goalModal.modalGoalType.name == 'Activities' && !newGoal.singleGoalCompletion"
+                    class="form-group" style="margin-bottom:0;">
+                    <label style="margin-bottom:0;">
+                        When does the {{goalModal.modalGoalType.name == "Activities" ? 'activity' : 'goal'}} repeat?
+                    </label>
+                    <div class="form-inline">
+                        <div class="radio" style="margin-top:0;">
+                            <label>
+                                <!-- If the user is editing a goal that has a recur object, show the repeatType, otherwise show the default -->
+                                <ng-container ng-if="currentEdit[goal.id].goal.recur.repeatType">
+                                    <input type="radio" ng-model="currentEdit[goal.id].goal.recur.repeatType" ng-value="'days'" disabled /> Daily
+                                </ng-container>
+                                <ng-container ng-if="!(currentEdit[goal.id].goal.recur.repeatType)">
+                                    <input type="radio" value="true" checked disabled /> Daily
+                                </ng-container>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <ng-container ng-if="currentEdit[goal.id].goal.recur.repeatType">
+                                    <input type="radio" ng-model="currentEdit[goal.id].goal.recur.repeatType" ng-value="'weeks'" disabled /> Weekly
+                                </ng-container>
+                                <ng-container ng-if="!(currentEdit[goal.id].goal.recur.repeatType)">
+                                    <input type="radio" value="false" disabled /> Weekly
+                                </ng-container>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="goalModal.modalGoalType.recurranceFormat !== 'none' && goalModal.modalGoalType.name == 'Activities' && !currentEdit[goal.id].goal.singleGoalCompletion"
+                    class="form-group" style="margin-bottom:0;">
+                    <div class="form-inline">
+                        <!-- Note that if a goal being edited has a repeatType set then it will also have a frequencyCount set -->
+                        <div ng-if="currentEdit[goal.id].goal.recur.repeatType" style="margin-top:0;">
+                            Repeat every
+                            <label>
+                                <input type="text" size=1 ng-model="currentEdit[goal.id].goal.recur.frequencyCount" disabled /> {{currentEdit[goal.id].goal.recur.repeatType === 'days' ? 'day' : 'week'}}(s)
+                            </label>
+                            <span ng-if="currentEdit[goal.id].goal.recur.repeatType ===  'weeks' && currentEdit[goal.id].goal.recur.selectedDays">on:</span>
+                        </div>
+                        <div ng-if="currentEdit[goal.id].goal.recur.repeatType ===  'weeks' && currentEdit[goal.id].goal.recur.selectedDays" class="checkbox">
+                            <label ng-repeat="day in days" style="padding-left: 5px">
+                                <input type="checkbox" name="selectedDays[]" value="{{day}}" ng-checked="currentEdit[goal.id].goal.recur.selectedDays.indexOf(day) > -1" ng-click="toggleSelectedDays(day, currentEdit[goal.id].goal.recur.selectedDays)" disabled> {{day}}
                             </label>
                         </div>
                     </div>
